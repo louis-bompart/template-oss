@@ -23,6 +23,10 @@ Configure the use of `template-oss` in the root `package.json`.
     // whitelist workspace by package name to modify package.json
     // and copy module files
     workspaces: ['workspace-package-name'],
+    // explicitly allow packages that would otherwise be flagged
+    // this is necessary so packages like our lint config can
+    // include these but others dont
+    allowedPackages: ['eslint'],
     version: '2.3.1'
   }
 }

@@ -18,10 +18,12 @@ const main = async () => {
   const problemSets = []
   for (const path of config.paths) {
     if (path !== root || config.applyRootModuleFiles) {
-      problemSets.push(await checkPackage(path))
+      problemSets.push(await checkPackage(path, {
+        allowedPackages: config.allowedPackages,
+      }))
     }
     if (path !== root || config.applyRootRepoFiles) {
-      problemSets.push(await checkGitIgnore(path))
+      problemSets.push(await checkGitIgnore(path, config))
     }
   }
 

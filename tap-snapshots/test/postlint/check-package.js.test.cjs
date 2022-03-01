@@ -5,7 +5,58 @@
  * Make sure to inspect the output below.  Do not ignore changes!
  */
 'use strict'
-exports[`test/postlint/check-package.js TAP checks a package.json incorrect fields > problems 1`] = `
+exports[`test/postlint/check-package.js TAP checks a package.json all problems > problems 1`] = `
+Array [
+  Object {
+    "message": String(
+      The following package.json fields are incorrect:
+        Field: "author" Expected: "GitHub Inc." Found: undefined
+        Field: "files" Expected: ["bin","lib"] Found: undefined
+        Field: "scripts" Expected: {"lint":"eslint '**/*.js'","postlint":"npm-template-check","template-copy":"npm-template-copy --force","lintfix":"npm run lint -- --fix","preversion":"npm test","postversion":"npm publish","prepublishOnly":"git push origin --follow-tags","snap":"tap","test":"tap","posttest":"npm run lint"} Found: undefined
+        Field: "engines" Expected: {"node":"^12.13.0 || ^14.15.0 || >=16"} Found: undefined
+    ),
+    "solution": "npm rm @npmcli/template-oss && npm i -D @npmcli/template-oss",
+  },
+  Object {
+    "message": String(
+      The following unwanted packages were found:
+        eslint
+        eslint-plugin-node
+        @npmcli/lint
+        eslint-plugin-promise
+        eslint-plugin-standard
+        eslint-plugin-import
+        standard
+    ),
+    "solution": "npm rm eslint eslint-plugin-node @npmcli/lint eslint-plugin-promise eslint-plugin-standard eslint-plugin-import standard",
+  },
+  Object {
+    "message": String(
+      The following required packages were not found:
+        @npmcli/eslint-config@^3.0.0 in devDependencies
+        tap@^15.0.0 in devDependencies
+    ),
+    "solution": "npm rm @npmcli/eslint-config tap && npm i @npmcli/eslint-config@^3.0.0 tap@^15.0.0 --save-dev",
+  },
+]
+`
+
+exports[`test/postlint/check-package.js TAP checks a package.json changes empty > problems 1`] = `
+Array [
+  Object {
+    "message": String(
+      The following package.json fields are incorrect:
+        Field: "author" Expected: "GitHub Inc." Found: undefined
+        Field: "files" Expected: ["bin","lib"] Found: undefined
+        Field: "scripts" Expected: {"lint":"eslint '**/*.js'","postlint":"npm-template-check","template-copy":"npm-template-copy --force","lintfix":"npm run lint -- --fix","preversion":"npm test","postversion":"npm publish","prepublishOnly":"git push origin --follow-tags","snap":"tap","test":"tap","posttest":"npm run lint"} Found: undefined
+        Field: "engines" Expected: {"node":"^12.13.0 || ^14.15.0 || >=16"} Found: undefined
+    ),
+    "solution": "npm rm @npmcli/template-oss && npm i -D @npmcli/template-oss",
+  },
+]
+`
+
+exports[`test/postlint/check-package.js TAP checks a package.json changes incorrect fields > problems 1`] = `
 Array [
   Object {
     "message": String(
@@ -20,7 +71,7 @@ Array [
 ]
 `
 
-exports[`test/postlint/check-package.js TAP checks a package.json incorrect object fields > problems 1`] = `
+exports[`test/postlint/check-package.js TAP checks a package.json changes incorrect object fields > problems 1`] = `
 Array [
   Object {
     "message": String(
@@ -44,47 +95,33 @@ Array [
 ]
 `
 
-exports[`test/postlint/check-package.js TAP checks a package.json missing fields > problems 1`] = `
+exports[`test/postlint/check-package.js TAP checks a package.json required deps > problems 1`] = `
 Array [
   Object {
     "message": String(
-      The following package.json fields are incorrect:
-        Field: "author" Expected: "GitHub Inc." Found: undefined
-        Field: "files" Expected: ["bin","lib"] Found: undefined
-        Field: "scripts" Expected: {"lint":"eslint '**/*.js'","postlint":"npm-template-check","template-copy":"npm-template-copy --force","lintfix":"npm run lint -- --fix","preversion":"npm test","postversion":"npm publish","prepublishOnly":"git push origin --follow-tags","snap":"tap","test":"tap","posttest":"npm run lint"} Found: undefined
-        Field: "engines" Expected: {"node":"^12.13.0 || ^14.15.0 || >=16"} Found: undefined
+      The following required packages were not found:
+        @npmcli/eslint-config@^3.0.0 in devDependencies
+        tap@^15.0.0 in devDependencies
     ),
-    "solution": "npm rm @npmcli/template-oss && npm i -D @npmcli/template-oss",
+    "solution": "npm rm @npmcli/eslint-config tap && npm i @npmcli/eslint-config@^3.0.0 tap@^15.0.0 --save-dev",
   },
 ]
 `
 
-exports[`test/postlint/check-package.js TAP checks a package.json unwanted deps > problems 1`] = `
+exports[`test/postlint/check-package.js TAP checks a package.json unwanted deps deny > problems 1`] = `
 Array [
   Object {
     "message": String(
-      The following package.json fields are incorrect:
-        Field: "author" Expected: "GitHub Inc." Found: undefined
-        Field: "files" Expected: ["bin","lib"] Found: undefined
-        Field: "scripts" Expected: {"lint":"eslint '**/*.js'","postlint":"npm-template-check","template-copy":"npm-template-copy --force","lintfix":"npm run lint -- --fix","preversion":"npm test","postversion":"npm publish","prepublishOnly":"git push origin --follow-tags","snap":"tap","test":"tap","posttest":"npm run lint"} Found: undefined
-        Field: "engines" Expected: {"node":"^12.13.0 || ^14.15.0 || >=16"} Found: undefined
-    ),
-    "solution": "npm rm @npmcli/template-oss && npm i -D @npmcli/template-oss",
-  },
-  Object {
-    "message": String(
       The following unwanted packages were found:
+        eslint
+        eslint-plugin-node
         @npmcli/lint
         eslint-plugin-promise
         eslint-plugin-standard
         eslint-plugin-import
         standard
     ),
-    "solution": "npm rm @npmcli/lint eslint-plugin-promise eslint-plugin-standard eslint-plugin-import standard",
+    "solution": "npm rm eslint eslint-plugin-node @npmcli/lint eslint-plugin-promise eslint-plugin-standard eslint-plugin-import standard",
   },
 ]
-`
-
-exports[`test/postlint/check-package.js TAP checks a package.json unwanted deps > problems 2`] = `
-Array []
 `

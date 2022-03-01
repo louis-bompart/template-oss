@@ -35,6 +35,7 @@
     "@npmcli/map-workspaces": "^2.0.1",
     "@npmcli/package-json": "^1.0.1",
     "json-parse-even-better-errors": "^2.3.1",
+    "semver": "^7.3.5",
     "which": "^2.0.2"
   },
   "files": [
@@ -42,19 +43,22 @@
     "lib"
   ],
   "devDependencies": {
-    "@npmcli/eslint-config": "*",
+    "@npmcli/eslint-config": "^3.0.0",
     "@npmcli/promise-spawn": "^2.0.0",
     "@npmcli/template-oss": "file:./",
+    "deepmerge": "^4.2.2",
     "eslint": "^8.9.0",
     "eslint-plugin-node": "^11.1.0",
-    "tap": "*"
-  },
-  "peerDependencies": {
-    "@npmcli/eslint-config": "^2.0.0",
-    "tap": "^15.0.9"
+    "tap": "^15.1.6"
   },
   "tap": {
     "coverage-map": "map.js"
+  },
+  "templateOSS": {
+    "allowedPackages": [
+      "eslint",
+      "eslint-plugin-node"
+    ]
   },
   "engines": {
     "node": "^12.13.0 || ^14.15.0 || >=16"

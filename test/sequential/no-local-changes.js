@@ -1,5 +1,6 @@
 const promiseSpawn = require('@npmcli/promise-spawn')
 const t = require('tap')
+const { basename } = require('path')
 
 const spawn = (name, args) => promiseSpawn(name, args, {
   stdioString: true,
@@ -17,10 +18,15 @@ const isClean = () => spawn('git',
 t.test('commands dont change repo', async (t) => {
   const startClean = await isClean()
 
+  if (!process.env.CI) {
+    t.skip(`Only run ${basename(__filename)} in CI`)
+    t.end()
+    return
+  }
+
   if (startClean.stdout) {
     t.equal(startClean.stdout, '', 'git status must be clean')
-    const diff = await spawn('git',
-      ['--no-pager', 'diff', '--word-diff=porcelain'])
+    const diff = await spawn('git', ['--no-pager', 'diff', '--word-diff=porcelain'])
     t.comment(`git diff: ${diff}`)
     t.end()
     return
